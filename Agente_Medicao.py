@@ -1,6 +1,5 @@
 import os
 import time
-import urllib3
 import pdfplumber
 import streamlit as st
 import google.generativeai as genai
