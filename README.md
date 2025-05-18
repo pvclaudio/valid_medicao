@@ -1,96 +1,88 @@
 # Documentação Técnica do Sistema de Análise de Boletins de Medição
 Visão Geral
-O sistema de análise de boletins de medição é um aplicativo web desenvolvido em Streamlit, com integração à API Gemini 2.5 Pro do Google e processamento de arquivos PDF com pdfplumber. Seu objetivo é:
+O sistema de análise de boletins de medição é um aplicativo web desenvolvido em Streamlit, com integração à API Gemini 2.5 Pro do Google e processamento de arquivos PDF utilizando a biblioteca pdfplumber.
 
+O objetivo principal do sistema é:
 
-1) Automatizar a verificação de medições com base em contratos fornecidos.
+Automatizar a verificação de medições com base em contratos fornecidos.
 
-2) Utilizar agentes de IA para validação e revisão de dados financeiros.
+Utilizar agentes de inteligência artificial para validação e revisão de dados financeiros.
 
-3) Facilitar o processo de auditoria e controle de possíveis divergências contratuais.
-
+Facilitar o processo de auditoria e controle de possíveis divergências contratuais.
 
 A aplicação foi projetada com foco em usabilidade, precisão na extração de dados e clareza nos relatórios gerados por IA.
 
 Arquitetura
+Frontend: Streamlit
 
-**Frontend:** Streamlit
+Processamento de PDFs: pdfplumber
 
-**Processamento de PDFs:** pdfplumber
+IA Generativa: Gemini 2.5 Pro via google.generativeai
 
-**IA Generativa:** Gemini 2.5 Pro via google.generativeai
+Autenticação e Chaves: st.secrets com variável GEMINI_API_KEY
 
-**Autenticação e Chaves:** st.secrets para a GEMINI_API_KEY
+Estrutura dos Dados
+O sistema aceita os seguintes arquivos:
 
-**Estrutura dos Dados**
+Um arquivo PDF contendo o boletim de medição.
 
-O sistema aceita:
+Um ou mais arquivos PDF contendo os contratos base.
 
-1) Um PDF com o boletim de medição
+Os dados extraídos são estruturados em:
 
-2) Um ou mais PDFs com os contratos base
+Tabelas de medição: listas tabulares com descrição, quantidade e valores.
 
-
-Os dados extraídos são estruturados como:
-
-**Tabelas de medição:** listas tabulares com descrição, quantidade e valores.
-
-**Preços contratuais**: mapeamento entre a descrição (função ou item) e valor unitário.
+Preços contratuais: mapeamento entre a descrição (função ou item) e o valor unitário contratado.
 
 Funcionalidades
 1. Upload de Arquivos
+Upload de um arquivo PDF de medição.
 
-PDF de medição
-
-De 1 a 10 contratos de referência
-
+Upload de até 10 arquivos PDF contendo os contratos.
 
 2. Extração de Tabelas
-As tabelas são extraídas página por página.
+Extração das tabelas de medição por página.
 
-Cada tabela é convertida em texto tabular para ser analisada pela IA.
-
-
+Conversão das tabelas para texto tabular estruturado.
 
 3. Agente Validador (Gemini)
 Responsável por:
 
-Analisar a tabela da medição.
+Analisar a tabela de medição.
 
-Comparar os valores com os do contrato.
+Comparar os valores com os preços contratuais.
 
-Detectar inconsistências como:
+Identificar inconsistências como:
 
-Valores unitários divergentes.
+Divergência nos valores unitários.
 
-Erros nos totais (quantidade × valor unitário).
+Cálculos incorretos (quantidade × valor unitário).
 
-Itens repetidos ou possíveis fraudes.
+Possíveis duplicidades ou indícios de superfaturamento.
 
-Prompt com contexto técnico financeiro.
-
+Utiliza prompt com contexto técnico financeiro.
 
 4. Agente Revisor (Gemini)
 Responsável por:
 
-Revisar a resposta do agente validador.
+Revisar a análise gerada pelo agente validador.
 
-Corrigir erros, adicionar informações e refinar a linguagem.
+Corrigir imprecisões, adicionar informações relevantes e refinar a linguagem.
 
-Garantir clareza e precisão para o usuário final.
+Assegurar precisão técnica e clareza na comunicação com o usuário final.
 
-Prompt com contexto de revisor técnico em auditoria.
-
+Utiliza prompt com contexto de revisão técnica em auditoria.
 
 5. Geração de Relatório Final
-O sistema concatena as análises por página em blocos de resposta formatados com Markdown.
+As análises são organizadas por página.
 
-A resposta final é apresentada via st.write_stream, simulando um fluxo dinâmico de geração.
+O resultado final é formatado em Markdown.
 
+A exibição é feita de forma dinâmica utilizando st.write_stream.
 
-**Segurança**
-A chave da API Gemini é armazenada de forma segura via st.secrets.
+Segurança
+A chave da API Gemini é armazenada com segurança em st.secrets.
 
-O sistema não armazena localmente os dados carregados.
+Nenhum dado enviado pelo usuário é armazenado localmente.
 
-Execução local segura, ideal para uso interno ou em ambiente controlado.
+O sistema é projetado para execução local segura, adequado para ambientes controlados.
