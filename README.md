@@ -31,34 +31,56 @@ Os dados extraídos são estruturados em:
 ________________________________________
 Funcionalidades
 1. Upload de Arquivos
+   
 •	Upload de um arquivo PDF de medição
+
 •	Upload de até 10 arquivos PDF contendo contratos de referência
-2. Extração de Tabelas
+
+3. Extração de Tabelas
+   
 •	Extração das tabelas página por página
+
 •	Conversão das tabelas para texto tabular
-3. Agente Validador (Gemini)
+
+5. Agente Validador (Gemini)
+   
 Responsável por:
+
 •	Analisar a tabela de medição
+
 •	Comparar os valores com os preços contratuais
+
 •	Identificar inconsistências como:
+
 o	Divergência de valores unitários
 o	Erros de cálculo (quantidade × valor unitário)
 o	Possíveis duplicidades ou indícios de superfaturamento
 O agente utiliza prompt com contexto técnico-financeiro.
-4. Agente Revisor (Gemini)
+
+7. Agente Revisor (Gemini)
 Responsável por:
 •	Revisar a resposta do agente validador
+
 •	Corrigir imprecisões e refinar a linguagem
+
 •	Adicionar informações relevantes
+
 •	Garantir clareza e precisão técnica para o usuário final
+
 O agente utiliza prompt com contexto de revisão técnica em auditoria.
-5. Geração de Relatório Final
+
+9. Geração de Relatório Final
 •	As análises são organizadas por página
+
 •	O resultado é formatado em Markdown
+
 •	A exibição é feita dinamicamente com st.write_stream
 ________________________________________
 Segurança
+
 •	A chave da API Gemini é armazenada com segurança utilizando st.secrets
+
 •	Nenhum dado carregado pelo usuário é armazenado localmente
+
 •	O sistema é executado localmente e projetado para ambientes internos e controlados
 
