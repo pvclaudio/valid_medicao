@@ -8,17 +8,25 @@ O objetivo principal do sistema é:
 A aplicação foi projetada com foco em usabilidade, precisão na extração de dados e clareza nos relatórios gerados por IA.
 ________________________________________
 Arquitetura
+
 •	Frontend: Streamlit
+
 •	Processamento de PDFs: pdfplumber
+
 •	IA Generativa: Gemini 2.5 Pro via google.generativeai
+
 •	Autenticação e Chaves: st.secrets com a variável GEMINI_API_KEY
 ________________________________________
 Estrutura dos Dados
+
 O sistema aceita os seguintes arquivos:
 •	Um arquivo PDF contendo o boletim de medição
+
 •	Um ou mais arquivos PDF contendo os contratos base
+
 Os dados extraídos são estruturados em:
 •	Tabelas de medição: listas tabulares com descrição, quantidade e valores
+
 •	Preços contratuais: mapeamento entre a descrição (função ou item) e valor unitário
 ________________________________________
 Funcionalidades
