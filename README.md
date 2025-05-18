@@ -1,5 +1,5 @@
 # Documentação Técnica do Sistema de Análise de Boletins de Medição
-Visão Geral
+
 O sistema de análise de boletins de medição é um aplicativo web desenvolvido em Streamlit, com integração à API Gemini 2.5 Pro do Google e processamento de arquivos PDF utilizando a biblioteca pdfplumber.
 O objetivo principal do sistema é:
 1.	Automatizar a verificação de medições com base em contratos fornecidos.
