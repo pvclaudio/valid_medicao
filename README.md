@@ -30,19 +30,20 @@ Os dados extraídos são estruturados em:
 •	Preços contratuais: mapeamento entre a descrição (função ou item) e valor unitário
 ________________________________________
 Funcionalidades
+
 1. Upload de Arquivos
    
 •	Upload de um arquivo PDF de medição
 
 •	Upload de até 10 arquivos PDF contendo contratos de referência
 
-3. Extração de Tabelas
+2. Extração de Tabelas
    
 •	Extração das tabelas página por página
 
 •	Conversão das tabelas para texto tabular
 
-5. Agente Validador (Gemini)
+3. Agente Validador (Gemini)
    
 Responsável por:
 
@@ -53,12 +54,17 @@ Responsável por:
 •	Identificar inconsistências como:
 
 o	Divergência de valores unitários
+
 o	Erros de cálculo (quantidade × valor unitário)
+
 o	Possíveis duplicidades ou indícios de superfaturamento
+
 O agente utiliza prompt com contexto técnico-financeiro.
 
-7. Agente Revisor (Gemini)
+4. Agente Revisor (Gemini)
+   
 Responsável por:
+
 •	Revisar a resposta do agente validador
 
 •	Corrigir imprecisões e refinar a linguagem
@@ -69,7 +75,8 @@ Responsável por:
 
 O agente utiliza prompt com contexto de revisão técnica em auditoria.
 
-9. Geração de Relatório Final
+5. Geração de Relatório Final
+   
 •	As análises são organizadas por página
 
 •	O resultado é formatado em Markdown
