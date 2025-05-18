@@ -2,25 +2,25 @@
 Visão Geral
 O sistema de análise de boletins de medição é um aplicativo web desenvolvido em Streamlit, com integração à API Gemini 2.5 Pro do Google e processamento de arquivos PDF com pdfplumber. Seu objetivo é:
 
-Automatizar a verificação de medições com base em contratos fornecidos.
 
-Utilizar agentes de IA para validação e revisão de dados financeiros.
+1) Automatizar a verificação de medições com base em contratos fornecidos.
 
-Facilitar o processo de auditoria e controle de possíveis divergências contratuais.
+2) Utilizar agentes de IA para validação e revisão de dados financeiros.
+
+3) Facilitar o processo de auditoria e controle de possíveis divergências contratuais.
+
 
 A aplicação foi projetada com foco em usabilidade, precisão na extração de dados e clareza nos relatórios gerados por IA.
 
 Arquitetura
-Componentes
-Frontend: Streamlit
 
-Processamento de PDFs: pdfplumber
+**Frontend:** Streamlit
+**Processamento de PDFs:** pdfplumber
+**IA Generativa:** Gemini 2.5 Pro via google.generativeai
+**Autenticação e Chaves:** st.secrets para a GEMINI_API_KEY
 
-IA Generativa: Gemini 2.5 Pro via google.generativeai
+**Estrutura dos Dados**
 
-Autenticação e Chaves: st.secrets para a GEMINI_API_KEY
-
-Estrutura dos Dados
 O sistema aceita:
 
 Um PDF com o boletim de medição
