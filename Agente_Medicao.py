@@ -11,7 +11,7 @@ st.logo("logo-alura.png")
 genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
 model = genai.GenerativeModel("gemini-2.5-pro")
 
-def agente_validador(tabela_texto, precos_contrato):
+def agente_validador(tabela_medicao, precos_contrato):
     prompt = f"""
 Você é um gerente financeiro especializado em auditorias de contratos.
 
@@ -25,7 +25,7 @@ Analise os dados da medição extraídos de um PDF e compare com a base contratu
 {precos_contrato}
 
 # Tabela de Medição
-{tabela_texto}
+{tabela_medicao}
 """
     try:
         response = model.generate_content(prompt)
@@ -33,7 +33,7 @@ Analise os dados da medição extraídos de um PDF e compare com a base contratu
     except Exception as e:
         return f"Erro ao consultar o agente validador: {e}"
 
-def agente_revisor(resposta_validador, tabela_texto, precos_contrato):
+def agente_revisor(resposta_validador, tabela_medicao, precos_contrato):
     prompt = f"""
 Você é um revisor técnico em auditoria de contratos. Sua tarefa é revisar a análise abaixo feita por um outro agente. 
 Confira se a resposta está coerente com a tabela de medição e a base contratual fornecida. Corrija imprecisões, adicione detalhes se necessário 
@@ -43,7 +43,7 @@ e assegure a clareza e precisão antes do envio ao usuário final.
 {resposta_validador}
 
 # Tabela de Medição
-{tabela_texto}
+{tabela_medicao}
 
 # Tabela de Preços Contratuais
 {precos_contrato}
